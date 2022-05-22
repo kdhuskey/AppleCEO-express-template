@@ -1,0 +1,10 @@
+${head}
+<h1>Here's the data we have on apple CEO's</h1>
+${ceos.map((ceo) => {
+    return `
+    <li><a href="/ceos/${ceo.slug}">${ceo.name}</a></li>
+    `
+}).join('')}
+
+
+${foot}
