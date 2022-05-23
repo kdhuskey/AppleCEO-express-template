@@ -54,7 +54,6 @@ app.get('/ceos/:slug', function(req, res){
 })
 
 
-
  
 
 
