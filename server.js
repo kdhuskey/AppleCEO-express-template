@@ -57,7 +57,7 @@ app.get('/ceos/:slug', function(req, res){
     let search = req.query.name
     let name = ceos.find(s => s.name.toLowerCase().includes(search.toLowerCase()))
     if (!name){
-        res.status(404).send(`There's never been a CEO at Apple with the name: ${req.query.name}`)
+        res.status(404).send(`There's never been a CEO at Apple with the name: ${search}`)
         return
     }
     res.render(`search`, {
