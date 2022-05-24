@@ -5,7 +5,7 @@ const ceos = require('./data')
 const data = require('./data')
 
 const hostname = 'localhost'
-const port = 3000
+const port = 3001
 
 const app = express()
 const server = http.createServer(app)
@@ -40,7 +40,7 @@ app.get('/ceos', function(req, res){
 
 app.get('/ceos/:slug', function(req, res){
     const renderedSlug = ceos.find(s => s.slug === req.params.slug)
-    console.log(renderedSlug)
+    // console.log(renderedSlug)
     if (!renderedSlug){
         res.status(404).send(`Error, could not find a ceo with slug of: ${req.params.slug} `)
         return
@@ -52,6 +52,22 @@ app.get('/ceos/:slug', function(req, res){
         }
     })
 })
+
+  app.get("/search", (req, res) => {
+    let search = req.query.name
+    let name = ceos.find(s => s.name.toLowerCase().includes(search.toLowerCase()))
+    if (!name){
+        res.status(404).send(`There's never been a CEO at Apple with the name: ${req.query.name}`)
+        return
+    }
+    res.render(`search`, {
+        partials,
+        locals: {
+            name
+            
+        }
+    });
+  });
 
 
  
